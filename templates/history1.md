@@ -4,7 +4,7 @@
  category: history
  title: Title.
  paragraph: Subtitle--Lorem ipsum dolor sit amet,consectetur adipis<br> cing elit, sed do eiusmod tempor incididunt ut labore et nunc<br> dolore magna aliqua
- list1: 03.04.2022
+ list1: 2022.04.03
  list2: Permalink
  list3: History
  content_title: Header-Title,lorem ipsum.

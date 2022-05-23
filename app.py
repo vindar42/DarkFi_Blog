@@ -4,6 +4,7 @@ from jinja2 import Environment, PackageLoader
 import os
 import glob
 import pypandoc
+from datetime import datetime 
 
 app = Flask(__name__)
 
@@ -19,6 +20,16 @@ env = Environment(loader=PackageLoader('app', 'templates'))
 test_template = env.get_template('index.html')
 posts_metadata = [posts[post].metadata for post in posts]
 
+
+url = []
+date = []
+
+for data in posts_metadata:
+ url.append(data['url'])
+ my_date = datetime.strptime(data['list1'], "%Y.%m.%d").date()
+ date.append(my_date)
+ li = list(zip(date, url))
+ print(li)
 #with open('templates/history1.md', 'r') as f:
 # text = f.read()
 # html = pandoc --toc --mathjax -f markdown -t html history1.md -o history1.html
