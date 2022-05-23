@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class = "arrow">
+     <p><a class = "remove-underline" href= "{{url_for('test') }}" style="color: grey">&#8592;</a></p>
+  </div>
+
+  <div class = "under-arrow">
+        <p class ="Archive1" style="font-family: IBMPlexMono-Regular;">Archive</p>
+      <nav class = "category1" style="list-style: none; font-family: IBMPlexMono-Regular;">
+       <a>CATEGORIES</a>
+         <a>Insights</a>
+         <a>Technology</a>
+         <a>History</a>
+         <a>Markets</a>
+         <a>Xenopoetics</a>
+      </nav>
+ </div>
+
+
+<div class = "archives">
+  {% for article in posts %}
+<div class = "archive">
+ <a  class = "remove-underline" href="">
+ <span class = "title-archive">
+  <h3 class = "bar-archive">{{article.title}}</h3>
+   <p>{{article.paragraph}}</p>
+   <ul style="font-family: IBMPlexMono-Regular;">
+    <li><a>{{article.list1}}</a></li>
+    <li><a>{{article.list2}}</a></li>
+    <li><a>{{article.list3}}</a></li>
+    <li><a>{{article.list4}}</a></li>
+   </ul>
+ </span>
+  </a>
+  </div>
+  {% endfor %}
+</div>
+
+<div class = "number-table">
+  <span class = "number-one">
+  </span>
+   <div class = "all-number">
+   </div>
+</div>
+<div class = "above-footer">
+      <span class ="to-archive">
+
+        <p class ="go-to-archive"><a class = "remove-underline" href="{{ url_for('archive') }}" style="color: white" >Archive</a></p>
+
+      </span>
+            <div class ="tag">
+        <a class = "remove-underline" href ="https://mobile.twitter.com/darkfisquad">
+          <img class = "down-follow-img" src="../static/files/icons/twitter.svg">
+        </a>
+       <a class = "remove-underline" href ="https://element.dark.fi">
+          <img class = "down-follow-img" src="../static/files/icons/element.svg">
+        </a>
+          <a class = "remove-underline" href ="https://github.com/darkrenaissance">
+          <img class = "down-follow-img" src="../static/files/icons/github.svg">
+        </a>
+         <a class = "remove-underline" href ="https://t.me/darkrenaissance">
+          <img class = "down-follow-img" src="../static/files/icons/telegram.svg">
+</a>
+
+
+      </div>
+ </div>
+{% endblock %}
+

@@ -1,0 +1,21 @@
+<html>
+  <head>
+  {% block css %}
+  <link rel="stylesheet" href="{{ csslink }}">
+  <link rel="stylesheet" href="{{ articlecss }}">
+  {% endblock %}
+    {% block head %}
+    {% include 'header.html' %}
+    {% endblock %} 
+  </head>
+  <body>
+    {% block content %}
+	
+    {% endblock %}
+  </body>
+<footer>
+        {% block footer %}
+	{% include 'footer.html' %}
+        {% endblock %}
+</footer>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <title>darkfi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel = "stylesheet" type = "text/css" href = "../static/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+  <div>
+    <header>
+      {% include 'header.html' %}
+    </header>
+
+   <div class = "article-image">
+     <p><img src= $img$ class ="content-img"></p>
+     <div class ="text">
+       <h1>$content_title$</h1>
+     </div>
+
+    <div class= "article">
+     <div class="list">
+       <ul>
+         <li><a>$list1$</a></li>
+         <li><a class = "remove-underline" href ="$url$" style="color: #343434;">$list2$</a></li>
+         <li><a>$list3$</a></li>
+       </ul>
+     </div>
+    
+     <div class = "container">
+         $body$ 
+     </div>
+  
+    </div>
+   </div>
+  
+  <div class = "go-to-article">
+         <span class = "previous-article">
+            {% if posts.$url$ %}
+              <a class = "remove-underline" href="{{posts.$url$}}"><p>(Previous article)</p></a>
+            {% endif %}
+         </span>
+         <span class = "next-article">
+            {% if posts.$url$ %}
+              <a class ="remove-underline" href= "{{posts.$url$}}"><p>(Next article)</p></a>
+            {% endif %}
+         </span>
+   </div>
+
+    <footer>
+      {% include 'footer.html' %}
+    </footer>
+  </div>
+</body>
