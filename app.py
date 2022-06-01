@@ -30,7 +30,7 @@ print(JINJA_FILTERS)
 
 
 app = Flask(__name__)
-
+app.jinja_env.filters.update(prev_page=prev_page,next_page=next_page)
 posts = {}
 for markdown_post in os.listdir('templates'):
   if markdown_post.endswith('md'):
@@ -59,6 +59,13 @@ for data in posts_metadata:
  li = list(zip(date, url))
  latest_article = sorted(li, key=lambda tuple:tuple[0])
  latest = latest_article[-4:]
+ 
+ d = data['list1']
+ date_list.append(d)
+ date_list.sort()
+ new = list(zip(date_list,url))
+print(new)  
+  
  for url_post in latest:
   url_posts = url_post[1]
   lat.append(url_posts)
