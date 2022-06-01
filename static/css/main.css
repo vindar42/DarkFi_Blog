@@ -1613,3 +1613,41 @@ table td{
   color: #d9c9c9;
 }
 
+.article #section{
+  padding-top: 50px;
+  line-height: 1.3em;
+  font-size: 7pt;
+}
+
+
+#section ul{
+  list-style: none;
+  white-space: none;
+  padding-left: 0;
+}
+
+#section li {
+  display: grid;
+  grid-template-columns: 20px auto;
+  justify-content: start;
+}
+
+#section ul li::before{
+  content: "\2191" "1";
+  dispaly: inline-block;
+  color: aqua;
+  padding-top: 13px;
+}
+
+#section p{
+   color: #778899;
+   font-family: 'Inconsolata';
+   padding-left: 5px;
+   font-family: "Inter-Regular.woff";
+}
+
+#section a{
+  color: #778899;
+  text-decoration: none;
+  border-bottom: 1px solid #778899;
+}
