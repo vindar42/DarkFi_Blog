@@ -5,6 +5,29 @@ import os
 import glob
 import pypandoc
 from datetime import datetime 
+import subprocess
+import requests
+
+
+def prev_page(current, pages):
+    prev_page = None
+    for page in pages:
+        if page.category == current.category and page.weight < current.weight:
+            prev_page = page
+    return prev_page
+
+def next_page(current, pages):
+    next_page = None
+    for page in pages:
+        if page.category == current.category and page.weight > current.weight:
+            next_page = page
+            break
+    return next_page
+
+JINJA_FILTERS = {'prev_page': prev_page, 'next_page':next_page}
+print(JINJA_FILTERS)
+
+
 
 app = Flask(__name__)
 
@@ -15,31 +38,40 @@ for markdown_post in os.listdir('templates'):
 
    with open(file_path, 'r') as file:
      posts[markdown_post] = markdown(file.read(), extras=['metadata'])
-
+     convertin = subprocess.call('./bash.sh')
 env = Environment(loader=PackageLoader('app', 'templates'))
 test_template = env.get_template('index.html')
 posts_metadata = [posts[post].metadata for post in posts]
 
-
+datas = []
 url = []
 date = []
+lat = []
+date_list = []
+
 
 for data in posts_metadata:
  url.append(data['url'])
+ url.sort()
  my_date = datetime.strptime(data['list1'], "%Y.%m.%d").date()
- date.append(my_date)
+ time = my_date.date()
+ date.append(time)
  li = list(zip(date, url))
- print(li)
-#with open('templates/history1.md', 'r') as f:
-# text = f.read()
-# html = pandoc --toc --mathjax -f markdown -t html history1.md -o history1.html
-#with open('templates/history1.html','w') as f:
-# f.write(html)
+ latest_article = sorted(li, key=lambda tuple:tuple[0])
+ latest = latest_article[-4:]
+ for url_post in latest:
+  url_posts = url_post[1]
+  lat.append(url_posts)
+for j in lat:
+ for y in posts_metadata:
+  if y['url'] == j:
+   datas.append(y)
+
 
 @app.route('/')
 def test():
  csslink = url_for('static', filename='css/main.css')
- return render_template('index.html', posts=posts_metadata, csslink=csslink)
+ return render_template('index.html', posts=datas,articles=datas,csslink=csslink)
 
 @app.route('/featured')
 def featured():
