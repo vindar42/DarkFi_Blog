@@ -9,28 +9,9 @@ import subprocess
 import requests
 
 
-def prev_page(current, pages):
-    prev_page = None
-    for page in pages:
-        if page.category == current.category and page.weight < current.weight:
-            prev_page = page
-    return prev_page
-
-def next_page(current, pages):
-    next_page = None
-    for page in pages:
-        if page.category == current.category and page.weight > current.weight:
-            next_page = page
-            break
-    return next_page
-
-JINJA_FILTERS = {'prev_page': prev_page, 'next_page':next_page}
-print(JINJA_FILTERS)
-
-
 
 app = Flask(__name__)
-app.jinja_env.filters.update(prev_page=prev_page,next_page=next_page)
+
 posts = {}
 for markdown_post in os.listdir('templates'):
   if markdown_post.endswith('md'):
